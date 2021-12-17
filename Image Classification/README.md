@@ -25,15 +25,14 @@ The training results were logged, where Test Loss metric was provided to SageMak
 
 The following screenshots show completed training jobs and the hyperparameter values obtained from the best tuning job.
 
-![training_hpo1](C:\Users\ikulk\OneDrive - ETEC Solutions\Documents\z_UDACITY\AWS_ML_nanodegree\nd009t-c3-deep-learning-topics-within-computer-vision-nlp-project-starter\training_hpo1.JPG)
+![Alt]![training_hpo1](https://user-images.githubusercontent.com/54789219/146488650-80cd153c-6e55-4219-8cf8-a6f89a317866.JPG)
 
 
-
-![training_hpo2](C:\Users\ikulk\OneDrive - ETEC Solutions\Documents\z_UDACITY\AWS_ML_nanodegree\nd009t-c3-deep-learning-topics-within-computer-vision-nlp-project-starter\training_hpo2.JPG)
-
+![Alt]![training_hpo2](https://user-images.githubusercontent.com/54789219/146488710-31b3841b-82de-4b9e-bc4b-202c3a1a720f.JPG)
 
 
-![training_hpo3](C:\Users\ikulk\OneDrive - ETEC Solutions\Documents\z_UDACITY\AWS_ML_nanodegree\nd009t-c3-deep-learning-topics-within-computer-vision-nlp-project-starter\training_hpo3.JPG)
+![Alt]![training_hpo3](https://user-images.githubusercontent.com/54789219/146488724-431488c1-a515-4171-b140-f946b090f7c4.JPG)
+
 
 ## Debugging and Profiling
 After obtaining the best hyperparameters a new model was created where SageMaker debugging and profiling utilities were used in order to track/detect potential issues with the model. In train_model.py script SMDebug hooks for PyTorch with the TRAIN and EVAL modes were added to the train and test functions correspondingly. In the main function SMDebug hook was created and registered to the model. The hook was also passed as an argument to the train and test functions.
@@ -45,12 +44,14 @@ Some issues were with Overtraining, PoorWeightInitialization, and LowGPUUtilizat
 ### Model Deployment
 Originally the model was deployed as intended (by calling deploy on the Estimator), however querying the created endpoint resulted in the error presented on the following screenshot. I could not obtain any predictions on the inference because of the error on the screenshot below. 
 
-![error](C:\Users\ikulk\OneDrive - ETEC Solutions\Documents\z_UDACITY\AWS_ML_nanodegree\nd009t-c3-deep-learning-topics-within-computer-vision-nlp-project-starter\error.JPG)
+![Alt]![error](https://user-images.githubusercontent.com/54789219/146488759-a9bd498b-9a97-40e4-9518-e6380af1be1f.JPG)
+
 
 The new inference handler script was adapted from [here]( https://docs.aws.amazon.com/sagemaker/latest/dg/adapt-inference-container.html ), where the model_fn, input_fn and predict_fn added functionality for loading the model, deserializing the input data so that it could be passed to the model, and for getting predictions from the function. The code is implemented in test.py script.
 The prediction was generated for one of the custom images using SageMaker runtime API with the invoke_endpoint method.
 
 The screenshot below shows the active endpoint for the model.
 
-![endpoints](C:\Users\ikulk\OneDrive - ETEC Solutions\Documents\z_UDACITY\AWS_ML_nanodegree\nd009t-c3-deep-learning-topics-within-computer-vision-nlp-project-starter\endpoints.JPG)
+![Alt]![endpoints](https://user-images.githubusercontent.com/54789219/146488762-a8ab8def-068a-43ee-8517-a731d9b1d16d.JPG)
+
 
