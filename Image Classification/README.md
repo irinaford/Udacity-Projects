@@ -19,7 +19,7 @@ The data were uploaded to an S3 bucket through the AWS Gateway, so that SageMake
 Pretrained ResNet-50 model was used to provide transfer learning to the CNN. In order to obtain optimal accuracy values SageMaker provides utility for tuning different hyperparameters of the model. Learning rate and batch size hyperparameters were finetuned using the following ranges:
 ```
 hyperparameter_ranges = {"lr": ContinuousParameter(0.001, 0.1),
-					     "batch-size": CategoricalParameter([32, 64, 128, 256, 512]),}
+		         "batch-size": CategoricalParameter([32, 64, 128, 256, 512]),}
 ```
 The training results were logged, where Test Loss metric was provided to SageMaker with the "Minimize" objective.  
 
